@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <meta charset="utf-8">
+    <title>Documento sin titulo</title>
+
+    <script>
+        function dia_de_hoy() {
+            var hoy = new Date();
+
+            document.getElementById("fecha").innerHTML = hoy.getDay;
+        }
+    </script>
+</head>
+
+<body class="centrado">
+    <h1><strong>Y que dia es hoy?</strong></h1>
+    <p>Hoy es dia: <span id="fecha"></span></p>
+    <scirpt>
+        dia_de_hoy();
+    </scirpt>
+</body>
+
+</html>
