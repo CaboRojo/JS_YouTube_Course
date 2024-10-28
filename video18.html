@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+</head>
+
+<body>
+
+    <table width="25%" border="0">
+        <tr>
+            <td><label for="textfield"></label>
+                <input type="text" name="textfield" id="c_mensaje"> </td>
+            <td><label for="textfield2"></label>
+                <input type="text" name="textfield2" id="d_mensaje"> </td>
+        </tr>
+    </table> 
+    <script>
+        var counter = 0, guess, generator;
+
+        var mensaje = document.getElementById("c_mensaje");
+
+        // Generate random number between 0 and 9
+        generator = Math.floor(Math.random() * 10);
+
+        // Function to congratulate the user
+        function congratulations(counter) {
+            alert(`Congratulations! You guessed the number correctly on your ${counter} attempt!`);
+        }
+
+        // Main guessing loop
+        do {
+            guess = prompt("Can you guess a number between 0 and 9?", "Enter your guess: ");
+            guess = Number(guess);
+
+            if (Number.isInteger(guess) && guess >= 0 && guess <= 9) {
+                counter++;
+
+                if (guess === generator) {
+                    congratulations(counter);
+                    break;
+                } else if (guess < generator) {
+                    mensaje.value = "Wrong guess, higher";
+                } else if (guess > generator) {
+                    mensaje.value = "Wrong guess, lower";
+                } else {
+                    alert("Wrong guess, try again!");
+                }
+            } else {
+                alert("Please enter a valid integer between 0 and 9");
+            }
+        } while (true);
+    </script>
+</body>
+
+</html>

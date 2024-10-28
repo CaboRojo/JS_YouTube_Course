@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  
+  <style>
+    #container {
+      width: 25%;
+      background-color: #FFC;
+      margin: auto;
+      padding: 15px;
+    }
+  </style>
+  
+  <head>
+  </head>
+  
+  <body>
+    <script>
+      var counter = 0, guess, generator;
+
+      // Generate random number between 0 and 9
+      generator = Math.floor(Math.random() * 10);
+
+      // Function to congratulate the user
+      function congratulations(counter) {
+        alert(`Congratulations! You guessed the number correctly on your ${counter} attempt!`);
+      }
+
+      // Main guessing loop
+      do {
+        guess = prompt("Can you guess a number between 0 and 9?", "Enter your guess: ");
+
+        guess = Number(guess);
+
+        if (Number.isInteger(guess) && guess >= 0 && guess <= 9) {
+          counter++;
+
+          if (guess === generator) {
+            congratulations(counter);
+            break;
+          } else {
+            alert("Wrong guess, try again!");
+          }
+        } else {
+          alert("Please enter a valid integer between 0 and 9");
+        }
+      } while (true);
+    </script>
+    
+    <div id="container">
+      <p>Last Guess: <span id="last-guess"></span></p>
+    </div>
+
+    <script>
+      // Update the "last guess" in the container
+      document.getElementById("last-guess").innerText = guess;
+    </script>
+  </body>
+</html>

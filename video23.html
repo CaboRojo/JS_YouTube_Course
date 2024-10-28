@@ -6,23 +6,72 @@
     <title>Documento sin titulo</title>
 
     <script>
-        function escribe_nombre (el_nombre) {
-
-            document.write(el_nombre);
-
+        function resta (num1, num2) {
+            return num1-num2;
         }
 
-        var el_nombre = prompt("Introduzca su nombre por favor");
+        function suma (num1, num2) {
+            return num1+num2;
+        }
 
+        function multiplicacion (num1, num2) {
+            return num1*num2;
+        }
 
+        function division (num1, num2) {
+            if (num2 == 0) {
+                return "Error: No se puede dividir entre 0";
+            }
+            return num1/num2;
+        }
+
+        function operacion(){
+            var primera_pregunta = prompt("Cual operacion te gustaria utilizar hoy? (suma/resta/mulplicacion/division)").toLocaleLowerCase();
+            var num1 = prompt("Cual seria tu primer numero?");
+            var num2 = prompt("Cual seria tu segundo numero?");
+            num1 = Number(num1);
+            num2 = Number(num2);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                alert("Introduzca numeros validos");
+                return;
+            }
+
+            var resultado;
+            switch (primera_pregunta) {
+                case "suma":
+                    resultado = suma(num1, num2);
+                    break;
+                case "resta": 
+                    resultado = resta(num1, num2);
+                    break;
+                case "multiplicacion":
+                    resultado= multiplicacion(num1, num2);
+                    break;
+                case "division":
+                    resultado = division(num1, num2);
+                    break;
+                default: 
+                    alert("Operacion no valida")
+                    return;
+            } 
+
+            document.getElementById("operacion").innerText = primera_pregunta;
+            document.getElementById("numero1").innerText = num1;
+            document.getElementById("numero2").innerText = num2;
+            document.getElementById("resultado").innerText = resultado;
+        }
 
     </script>
-</headZ>
 
-<body>
-    <p style="font-size: 24px; font-weight: bold;">Hola: <script>escribe_nombre(el_nombre)</script> . Bienvenido a mi pagina web</p>
-    <p>Esta es una web que trata de explicar temas de JavaScript, asi que <script>escribe_nombre(el_nombre)</script> puedes plantear
-    las dudas que desees</p>
+
+</head>
+
+<body onload="operacion()">
+    <p><span id="operacion"></span></p>
+    <p><span id="numero1"></span></p>
+    <p><span id="numero2"></span></p>
+    <p><span id="resultado"></span></p>
+    
 </body>
-
 </html>

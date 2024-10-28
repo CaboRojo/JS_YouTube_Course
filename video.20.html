@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <meta charset="utf-8">
+    <title>Documento sin titulo</title>
+
+    <script>
+       var Trabajadores = new Array();
+
+       var persona="";
+
+       var contador=0;
+
+       while(persona.toLowerCase() !="salir") {
+        persona = prompt("Introduce trabajador (type 'salir' to stop)");
+
+        if(persona.toLowerCase() != "salir) {
+           Trabajadores[contador] = persona;
+           contador++;
+          }
+       }
+
+       for(i=0; i < Trabajadores.length; i++) {
+        document.write(Trabajadores[i] + "</br>");
+       }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
