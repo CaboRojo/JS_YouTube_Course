@@ -51,7 +51,7 @@ To see the examples and exercises:
    ```
    http-server -p 8080
 
-5. **Open your browser and navigate to http://localhost:8080 to see the course examples.**
+5. **Open your browser and navigate to http://localhost:8080/video22.html to see the course examples.**
 
 ## GitHub Workflow
 
