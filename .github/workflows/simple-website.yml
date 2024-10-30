@@ -12,7 +12,10 @@ jobs:
   serve: 
     runs-on: self-hosted 
     steps: 
-    - name: Serve Website
-      run: http-server ./ -p 8080 
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Serve Website
+        run: http-server ./ -p 8080 
 
 
