@@ -57,9 +57,10 @@
     </style>
    <script>
 
-    var cifra="";
-    var operaciones=["+", "-", "/","*"];
-    function display_numeros(numero){
+    var cifra = "";
+    var operation = "";
+
+    function display_numeros(numero) {
         document.getElementById("display").value += numero;
     }
 
@@ -68,26 +69,37 @@
         operation = op;
         document.getElementById("display").value = "";
     }
+
+    function display_result(resultado) {
+        document.getElementById("display").value = resultado;
+    }
     
     function calcular() {
         var cifra2 = document.getElementById("display").value;
-        var resultado = 0
-        switch(operation) {
+        var resultado = 0;
+
+        switch (operation) {
             case "+":
                 resultado = parseFloat(cifra) + parseFloat(cifra2);
                 break;
             case "-":
                 resultado = parseFloat(cifra) - parseFloat(cifra2);
                 break;
-            case "+":
+            case "*":
                 resultado = parseFloat(cifra) * parseFloat(cifra2);
                 break;
-            case "/": // we can further improve this by checking for zeros 
-                resultado = parseFloat(cifra) / parseFloat(cifra2);
+            case "/":
+                if (parseFloat(cifra2) !== 0) {
+                    resultado = parseFloat(cifra) / parseFloat(cifra2);
+                } else {
+                    alert("Cannot divide by zero");
+                    return;
+                }
                 break;
         }
-        document.getElementById("display").value = resultado;
+        display_result(resultado);
     }
+
    </script>
 
 </head>
@@ -102,7 +114,7 @@
         <tr>
             <td><input name="button" type="button" class="numero" id="button" value="+" onClick="display_operacion('+')"></td>
             <td><input name="button2" type="button" class="numero" id="button2" value="-" onClick="display_operacion('-')"></td>
-            <td><input name="button3" type="button" class="numero" id="button3" value="*" onClick="display_operacion'*')"></td>
+            <td><input name="button3" type="button" class="numero" id="button3" value="*" onClick="display_operacion('*')"></td>
             <td><input name="button4" type="button" class="numero" id="button4" value="/" onClick="display_operacion('/')"></td>
         </tr>
         <tr>
@@ -122,11 +134,10 @@
         </tr>
         <tr>
             <td colspan="2"><input name="num0" type="button" class="numero" id="num0" value="0" onClick="display_numeros(0)"></td>
+            <td><input name="equals" type="button" class="numero" id="equals" value="=" onClick="calcular()"></td>
             <td><input name="clear" type="button" class="numero" id="clear" value="C" onClick="document.getElementById('display').value='' "></td>
         </tr>
     </table>
 </body>
-<script>
-    document.getElementById("display").value = 0;
-</script>
+
 </html>
