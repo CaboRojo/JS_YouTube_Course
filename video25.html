@@ -3,48 +3,130 @@
   
 <head>
     <meta charset="utf-8">
-    <title>Documento sin titulo</title>
+    <title>Styled Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
 
+        table {
+            width: 200px;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            text-align: right;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        input[type="button"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            background-color: #e6e6e6;
+            transition: background-color 0.3s;
+        }
+
+        input[type="button"]:hover {
+            background-color: #d1d1d1;
+        }
+
+        .color_display {
+            background-color: #f9f9f9;
+            border: 2px solid #ccc;
+        }
+    </style>
    <script>
-    function display_numeros(numero) {
-        document.getElementById("display").value=numero;
+
+    var cifra="";
+    var operaciones=["+", "-", "/","*"];
+    function display_numeros(numero){
+        document.getElementById("display").value += numero;
+    }
+
+    function display_operacion(op) {
+        cifra = document.getElementById("display").value;
+        operation = op;
+        document.getElementById("display").value = "";
+    }
+    
+    function calcular() {
+        var cifra2 = document.getElementById("display").value;
+        var resultado = 0
+        switch(operation) {
+            case "+":
+                resultado = parseFloat(cifra) + parseFloat(cifra2);
+                break;
+            case "-":
+                resultado = parseFloat(cifra) - parseFloat(cifra2);
+                break;
+            case "+":
+                resultado = parseFloat(cifra) * parseFloat(cifra2);
+                break;
+            case "/": // we can further improve this by checking for zeros 
+                resultado = parseFloat(cifra) / parseFloat(cifra2);
+                break;
+        }
+        document.getElementById("display").value = resultado;
     }
    </script>
 
 </head>
 
 <body>
-    <table width="15% border=1">
+    <table>
         <tr>
             <td colspan="4" align="center">
                 <input name="display" type="text" class="color_display" id="display" size="25">
             </td>
         </tr>
         <tr>
-            <td width="26%"><input name="button" type="button" class="numero" id="button" value="+"></td>
-            <td width="21%"><input name="button2" type="button" class="numero" id="button2" value="-"></td>
-            <td width="21%"><input name="button3" type="button" class="numero" id="button3" value="*"></td>
-            <td width="32%"><input name="button4" type="button" class="numero" id="button4" value="/"></td>
+            <td><input name="button" type="button" class="numero" id="button" value="+" onClick="display_operacion('+')"></td>
+            <td><input name="button2" type="button" class="numero" id="button2" value="-" onClick="display_operacion('-')"></td>
+            <td><input name="button3" type="button" class="numero" id="button3" value="*" onClick="display_operacion'*')"></td>
+            <td><input name="button4" type="button" class="numero" id="button4" value="/" onClick="display_operacion('/')"></td>
         </tr>
         <tr>
-            <td ><input name="num7" type="button" class="numero" id="num7" value="7" onClick="display_numeros(7)"></td>
-            <td ><input name="num8" type="button" class="numero" id="num8" value="8" onClick="display_numeros(8)"></td>
-            <td ><input name="num9" type="button" class="numero" id="num9" value="9" onClick="display_numeros(9)"></td>
+            <td><input name="num7" type="button" class="numero" id="num7" value="7" onClick="display_numeros(7)"></td>
+            <td><input name="num8" type="button" class="numero" id="num8" value="8" onClick="display_numeros(8)"></td>
+            <td><input name="num9" type="button" class="numero" id="num9" value="9" onClick="display_numeros(9)"></td>
         </tr>
         <tr>
-            <td ><input name="num4" type="button" class="numero" id="num4" value="4" onClick="display_numeros(4)"></td>
-            <td ><input name="num5" type="button" class="numero" id="num5" value="5" onClick="display_numeros(5)"></td>
-            <td ><input name="num6" type="button" class="numero" id="num6" value="6" onClick="display_numeros(6)"></td>
+            <td><input name="num4" type="button" class="numero" id="num4" value="4" onClick="display_numeros(4)"></td>
+            <td><input name="num5" type="button" class="numero" id="num5" value="5" onClick="display_numeros(5)"></td>
+            <td><input name="num6" type="button" class="numero" id="num6" value="6" onClick="display_numeros(6)"></td>
         </tr>
         <tr>
-            <td ><input name="num1" type="button" class="numero" id="num1" value="1" onClick="display_numeros(1)"></td>
-            <td ><input name="num2" type="button" class="numero" id="num2" value="2" onClick="display_numeros(2)"></td>
-            <td ><input name="num3" type="button" class="numero" id="num3" value="3" onClick="display_numeros(3)"></td>
+            <td><input name="num1" type="button" class="numero" id="num1" value="1" onClick="display_numeros(1)"></td>
+            <td><input name="num2" type="button" class="numero" id="num2" value="2" onClick="display_numeros(2)"></td>
+            <td><input name="num3" type="button" class="numero" id="num3" value="3" onClick="display_numeros(3)"></td>
         </tr>
         <tr>
-            <td ><input name="num0" type="button" class="numero" id="num0" value="0"></td>
+            <td colspan="2"><input name="num0" type="button" class="numero" id="num0" value="0" onClick="display_numeros(0)"></td>
+            <td><input name="clear" type="button" class="numero" id="clear" value="C" onClick="document.getElementById('display').value='' "></td>
         </tr>
-
     </table>
 </body>
+<script>
+    document.getElementById("display").value = 0;
+</script>
 </html>
