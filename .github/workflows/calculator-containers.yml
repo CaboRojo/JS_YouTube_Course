@@ -1,0 +1,27 @@
+name: Calculator Containers
+
+on: 
+  push: 
+    branches: 
+      -- main
+  pull_request:
+    branches:
+      -- main
+
+jobs: 
+  run_container: 
+    runs-on: ubuntu-latest  
+    
+    steps: 
+        - name: Checkout repository 
+          uses: actions/checkout@v2
+
+        - name: Set up docker
+          run: |
+            docker build -t my_calculator_app . 
+            docker run -d -p 8080:8080 --name calculator_container my_calculator_app
+
+        - name: Run tests or commands inside the container  
+          run: 
+            # Run commmands inside the container
+            docker exec -it calculator_container npm test 
